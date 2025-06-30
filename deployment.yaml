@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
         - name: ghcr
       containers:
-      - image: ghcr.io/mkanus/argocd-app/app:5ef7a3f7f9546fade1f1f2cdfc501dd6260beae6
+      - image: ghcr.io/mkanus/argocd-app/app:latest
         name: shopping
 ---
 apiVersion: v1
@@ -35,31 +35,3 @@ spec:
     targetPort: 80
   selector:
     app: shopping
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  namespace: product
-  name: shopping-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-      - shop.mehmetkanus.com
-      secretName: tls-shopping
-  rules:
-    - host: shop.mehmetkanus.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: shopping-svc
-                port:
-                  number: 80
