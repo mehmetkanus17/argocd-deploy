@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
         - name: ghcr
       containers:
-      - image: ghcr.io/mkanus/argocd-app/app:latests
+      - image: ghcr.io/mkanus/argocd-app:latests
         name: shopping
 ---
 apiVersion: v1
