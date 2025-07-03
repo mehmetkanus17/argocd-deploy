@@ -12,10 +12,10 @@
 #   ingressClassName: nginx
 #   tls:
 #   - hosts:
-#     - argo.mehmetkanus.com
-#     secretName: tls-argo-secret
+#     - argo.hg.mehmetkanus.com
+#     secretName: tls-argocdcd
 #   rules:
-#   - host: argo.mehmetkanus.com
+#   - host: argo.hg.mehmetkanus.com
 #     http:
 #       paths:
 #       - backend:
